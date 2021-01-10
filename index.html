@@ -1,0 +1,104 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notealohic</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1>Notealohic</h1>
+    </header>
+
+    <div class="container" style=" padding: 20px 20px; text-align: center;">
+      <!-- Tab content -->
+      <div id="To-Do lists" class="tabcontent" style="margin-top: 10vh;">
+        <h3>My To-Do list</h3>
+        <input type="text" id="myInput" placeholder="Title..." />
+        <span onclick="newElement()" class="addBtn">ADD</span>
+      </div>
+
+      <ul id="myUL">
+        <li>Hit the gym</li>
+        <li class="checked">Pay bills</li>
+        <li>Buy eggs</li>
+        <li>Read a book</li>
+      </ul>
+    </div>
+
+    <div class="topnav">
+      <a class="active" href="#to-do lists">To-Do lists</a>
+      <a href="#sticky notes">Sticky Notes</a>
+      <a href="#about">About</a>
+    </div>
+
+          
+<script>
+    // Create a "close" button and append it to each list item
+    var myNodelist = document.getElementsByTagName("LI");
+    var i;
+    for (i = 0; i < myNodelist.length; i++) {
+      var span = document.createElement("SPAN");
+      var txt = document.createTextNode("\u00D7");
+      span.className = "close";
+      span.appendChild(txt);
+      myNodelist[i].appendChild(span);
+    }
+    
+    // Click on a close button to hide the current list item
+    var close = document.getElementsByClassName("close");
+    var i;
+    for (i = 0; i < close.length; i++) {
+      close[i].onclick = function() {
+        var div = this.parentElement;
+        div.style.display = "none";
+      }
+    }
+    
+    // Add a "checked" symbol when clicking on a list item
+    var list = document.querySelector('ul');
+    list.addEventListener('click', function(ev) {
+      if (ev.target.tagName === 'LI') {
+        ev.target.classList.toggle('checked');
+      }
+    }, false);
+    
+    // Create a new list item when clicking on the "Add" button
+    function newElement() {
+      var li = document.createElement("li");
+      var inputValue = document.getElementById("myInput").value;
+      var t = document.createTextNode(inputValue);
+      li.appendChild(t);
+      if (inputValue === '') {
+        alert("You must write something!");
+      } else {
+        document.getElementById("myUL").appendChild(li);
+      }
+      document.getElementById("myInput").value = "";
+    
+      var span = document.createElement("SPAN");
+      var txt = document.createTextNode("\u00D7");
+      span.className = "close";
+      span.appendChild(txt);
+      li.appendChild(span);
+    
+      for (i = 0; i < close.length; i++) {
+        close[i].onclick = function() {
+          var div = this.parentElement;
+          div.style.display = "none";
+        }
+      }
+    }
+    </script>
+
+
+    <div id="About" class="tabcontent">
+      <h3>Hi, I am Aastha Aggarwal</h3>
+      <p> I am a content writer, machine learning enthusiast and a beginner in web development. This is my first website.</p>
+    </div>
+
+    
+		
+		
+
+    </body>
+</html>

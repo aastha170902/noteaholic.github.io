@@ -3,11 +3,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Notealohic</title>
     <link rel="stylesheet" href="style.css" />
+     
   </head>
+
+  
   <body>
     <header class="header">
       <h1>Notealohic</h1>
     </header>
+
+   
+  
 
     <div class="container" style=" padding: 20px 20px; text-align: center;">
       <!-- Tab content -->
@@ -31,69 +37,157 @@
       <a href="#about">About</a>
     </div>
 
-          
-<script>
-    // Create a "close" button and append it to each list item
-    var myNodelist = document.getElementsByTagName("LI");
-    var i;
-    for (i = 0; i < myNodelist.length; i++) {
-      var span = document.createElement("SPAN");
-      var txt = document.createTextNode("\u00D7");
-      span.className = "close";
-      span.appendChild(txt);
-      myNodelist[i].appendChild(span);
-    }
     
-    // Click on a close button to hide the current list item
-    var close = document.getElementsByClassName("close");
-    var i;
-    for (i = 0; i < close.length; i++) {
-      close[i].onclick = function() {
-        var div = this.parentElement;
-        div.style.display = "none";
+
+
+
+    <script>
+      // Create a "close" button and append it to each list item
+      var myNodelist = document.getElementsByTagName("LI");
+      var i;
+      for (i = 0; i < myNodelist.length; i++) {
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "close";
+        span.appendChild(txt);
+        myNodelist[i].appendChild(span);
       }
-    }
-    
-    // Add a "checked" symbol when clicking on a list item
-    var list = document.querySelector('ul');
-    list.addEventListener('click', function(ev) {
-      if (ev.target.tagName === 'LI') {
-        ev.target.classList.toggle('checked');
-      }
-    }, false);
-    
-    // Create a new list item when clicking on the "Add" button
-    function newElement() {
-      var li = document.createElement("li");
-      var inputValue = document.getElementById("myInput").value;
-      var t = document.createTextNode(inputValue);
-      li.appendChild(t);
-      if (inputValue === '') {
-        alert("You must write something!");
-      } else {
-        document.getElementById("myUL").appendChild(li);
-      }
-      document.getElementById("myInput").value = "";
-    
-      var span = document.createElement("SPAN");
-      var txt = document.createTextNode("\u00D7");
-      span.className = "close";
-      span.appendChild(txt);
-      li.appendChild(span);
-    
+      
+      // Click on a close button to hide the current list item
+      var close = document.getElementsByClassName("close");
+      var i;
       for (i = 0; i < close.length; i++) {
         close[i].onclick = function() {
           var div = this.parentElement;
           div.style.display = "none";
         }
       }
+      
+      // Add a "checked" symbol when clicking on a list item
+      var list = document.querySelector('ul');
+      list.addEventListener('click', function(ev) {
+        if (ev.target.tagName === 'LI') {
+          ev.target.classList.toggle('checked');
+        }
+      }, false);
+      
+      // Create a new list item when clicking on the "Add" button
+      function newElement() {
+        var li = document.createElement("li");
+        var inputValue = document.getElementById("myInput").value;
+        var t = document.createTextNode(inputValue);
+        li.appendChild(t);
+        if (inputValue === '') {
+          alert("You must write something!");
+        } else {
+          document.getElementById("myUL").appendChild(li);
+        }
+        document.getElementById("myInput").value = "";
+      
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "close";
+        span.appendChild(txt);
+        li.appendChild(span);
+      
+        for (i = 0; i < close.length; i++) {
+          close[i].onclick = function() {
+            var div = this.parentElement;
+            div.style.display = "none";
+          }
+        }
+      }
+      </script>
+     
+
+
+
+
+
+
+
+
+     <link rel="stylesheet" href="new.css" />
+<button id="addBtn">Add New</button>
+<div class="sticky-container">
+   <div class="sticky"> 
+     <span class="close1" contenteditable="false">X</span>
+  </div>   
+
+<!--   sticky notes are created here -->
+</div>
+ 
+
+<script>
+    const addBtn = document.querySelector("#addBtn");
+
+addBtn.addEventListener("click", ()=>{
+    let stickyCont = document.querySelector(".sticky-container");
+    let stickySingle = document.createElement('div');
+    stickySingle.classList.add('sticky');
+    stickySingle.contentEditable = "true";
+    stickySingle.setAttribute = ("role","textbox");
+    stickySingle.innerHTML = "..."
+    stickyCont.appendChild(stickySingle);
+  
+    // Delete button
+    let close1 = document.createElement('span');
+    
+    close1.classList.add('close1');
+    close1.innerHTML = "X";
+    close1.contentEditable = "false";
+    stickySingle.appendChild(close1);
+  
+    // Delete function. used "for" to bind delete button with 
+    // coresponding stickynote
+    let stickies = document.getElementsByClassName("sticky");
+    console.log(stickies.length)
+    let xs = document.getElementsByClassName("close1");
+    for ( let j = 0; j< stickies.length; j++){
+    console.log(xs[j])
     }
-    </script>
+    
+    for (let i = 0; i < stickies.length; i++){
+        xs[i].addEventListener("click", ()=> {
+            console.log(stickies.length);
+            stickies[i].style.display = "none";
+        });
+    }
+    
+    // Random colors
+    function randomNumber(min, max) { 
+      return Math.random() * (max - min) + min; 
+    }
+    
+    let color = randomNumber(1,720);
+    stickySingle.style.filter = "hue-rotate(" + color +"deg)";
+    });
+//     let stickies = document.querySelector(".sticky");
+ 
+//  let xs = document.querySelector(".close1");
+// console.log("close1")
+//  for (let i = 0; i < stickies.length; i++){
+//      xs[i].addEventListener("click", ()=> {
+//          console.log(stickies.length);
+//          stickies[i].style.display = "none";
+//      });
+//  }
+
+</script>
 
 
-    <div id="About" class="tabcontent">
-      <h3>Hi, I am Aastha Aggarwal</h3>
-      <p> I am a content writer, machine learning enthusiast and a beginner in web development. This is my first website.</p>
+
+
+
+
+
+   
+
+<div id="About" class="tabcontent">
+      
+      <h3>Hi, I am Aastha Aggarwal </h3> 
+      I am a content writer, machine learning enthusiast and a beginner in web development. This is my first website. 
+    
     </div>
 
     
